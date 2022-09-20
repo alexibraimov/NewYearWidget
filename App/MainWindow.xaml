@@ -1,0 +1,116 @@
+﻿<Window x:Class="NewYearWidget.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewYearWidget"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        MaxHeight="200" 
+        MaxWidth="480"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        MouseDoubleClick="Window_MouseDoubleClick"
+        MouseDown="Window_MouseDown"
+        MouseMove="Window_MouseMove">
+    <Grid Margin="0">
+        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10">
+            <Grid Grid.Column="1" Background="Black" Opacity="0.1"/>
+        </Border>
+        <Image Grid.Column="0" Stretch="Fill" Source="background.png" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="1" FontSize="20" 
+                   Foreground="White" 
+                   FontFamily="Comic Sans MS"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center">
+                    До нового года осталось
+                </Label>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="50,0,0,0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                        <Label Foreground="White" 
+                               FontFamily="Comic Sans MS"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center">Дней</Label>
+                        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Background="White">
+                            <Label Foreground="Black" 
+                                   x:Name="Days" 
+                                   FontFamily="Comic Sans MS"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                        <Label Foreground="White" 
+                               FontFamily="Comic Sans MS"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center">Часов</Label>
+                        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Background="White">
+                            <Label Foreground="Black" 
+                                   x:Name="Hours" 
+                                   FontFamily="Comic Sans MS"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                        <Label Foreground="White" 
+                               FontFamily="Comic Sans MS"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center">Минут</Label>
+                        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Background="White">
+                            <Label Foreground="Black" 
+                                   x:Name="Minutes" 
+                                   FontFamily="Comic Sans MS"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                        <Label Foreground="White" 
+                               FontFamily="Comic Sans MS"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center">Секунд</Label>
+                        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Background="White">
+                            <Label Foreground="Black" 
+                                   x:Name="Seconds" 
+                                   FontFamily="Comic Sans MS"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
