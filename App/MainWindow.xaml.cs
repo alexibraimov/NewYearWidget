@@ -4,17 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace NewYearWidget
@@ -32,9 +23,14 @@ namespace NewYearWidget
             Hours.Content = "0";
             Minutes.Content = "0";
             Seconds.Content = "0";
+            DaysLabel.Content = "ДНЕЙ";
+            HoursLabel.Content = "ЧАСОВ";
+            MinutesLabel.Content = "МИНУТ";
+            SecondsLabel.Content = "СЕКУНД";
             timer.Tick += OnTick;
             timer.Start();
         }
+
 
         private void OnTick(object sender, EventArgs e)
         {
@@ -57,6 +53,10 @@ namespace NewYearWidget
             Hours.Content = toNewYear.Hours;
             Minutes.Content = toNewYear.Minutes;
             Seconds.Content = toNewYear.Seconds;
+            DaysLabel.Content = RussianWordDeclension.GetWordGetWithDeclension(toNewYear.Days, RussianWordDeclension.WordType.DAY);
+            HoursLabel.Content = RussianWordDeclension.GetWordGetWithDeclension(toNewYear.Hours, RussianWordDeclension.WordType.HOUR);
+            MinutesLabel.Content = RussianWordDeclension.GetWordGetWithDeclension(toNewYear.Minutes, RussianWordDeclension.WordType.MINUTE);
+            SecondsLabel.Content = RussianWordDeclension.GetWordGetWithDeclension(toNewYear.Seconds, RussianWordDeclension.WordType.SECOND);
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -143,5 +143,62 @@ namespace NewYearWidget
                     break;
             }
         }
+
+        public static class RussianWordDeclension
+        {
+            public enum WordType
+            {
+                DAY,
+                HOUR,
+                MINUTE,
+                SECOND
+            }
+
+            private static Dictionary<WordType, List<string>> _wordsMap = new Dictionary<WordType, List<string>>()
+            {
+                [WordType.DAY] = new List<string>() 
+                {
+                    "ДЕНЬ","ДНЯ","ДНЕЙ"
+                },
+                [WordType.HOUR] = new List<string>()
+                {
+                    "ЧАС","ЧАСА","ЧАСОВ"
+                },
+                [WordType.MINUTE] = new List<string>()
+                {
+                    "МИНУТА","МИНУТЫ","МИНУТ"
+                },
+                [WordType.SECOND] = new List<string>()
+                {
+                    "СЕКУНДА","СЕКУНДЫ","СЕКУНД"
+                },
+            };
+
+            public static string GetWordGetWithDeclension(int count, WordType wordType)
+            {
+                if (_wordsMap.ContainsKey(wordType))
+                {
+                    var lastDigit = count / 1 % 10;
+                    var prelastDigit = count / 10 % 10;
+
+                    if (lastDigit == 1 && prelastDigit != 1)
+                    {
+                        return _wordsMap[wordType][0];
+                    }
+                    else if(lastDigit > 1 && lastDigit < 5 && prelastDigit != 1)
+                    {
+                        return _wordsMap[wordType][1];
+                    }
+                    else
+                    {
+                        return _wordsMap[wordType][2];
+                    }
+                }
+
+                return null;
+            }
+
+        }
+
     }
 }
